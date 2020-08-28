@@ -389,10 +389,9 @@
 
 @role('market')
 <section class="content">
-
+    @include('dashboard.modals.market_orders')
 </section>
 @endrole
 <!-- /.content -->
-@include('dashboard.modals.add_order')
 
 @endsection

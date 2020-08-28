@@ -1,50 +1,32 @@
     <!-- Modal -->
-    <div class="modal fade" id="addOrderModal" tabindex="-1" role="dialog" aria-labelledby="addOrderModalLabel">
+    <div class="modal fade" id="marketOrderModal" tabindex="-1" role="dialog" aria-labelledby="marketOrderModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="addOrderModalLabel">Add Order</h4>
+                    <h4 class="modal-title" id="marketOrderModalLabel">Add Order</h4>
                 </div>
                 <div class="add-order">
-                    <form id="form_add_orders" action="{{ route('orders.store') }}" method="post">
+                    <form id="form_add_orders" action="{{ route('market.orderstore') }}" method="post">
                         @csrf 
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Customer Name</label>
-                                        <input type="text" class="form-control" name="customer" placeholder="Customer Name" required>
+                                        <input type="text" class="form-control" name="receiver" placeholder="Customer Name" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Customer Phone</label>
-                                        <input type="number" class="form-control" name="phone" placeholder="Customer Phone" required>
+                                        <input type="number" class="form-control" name="receiver_phone" placeholder="Customer Phone" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Customer Address</label>
-                                        <input type="text" class="form-control" name="address" placeholder="Customer Address" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Receiver Name</label>
-                                        <input type="text" class="form-control" name="receiver" placeholder="Receiver Name" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Receiver Phone</label>
-                                        <input type="number" class="form-control" name="receiver_phone" placeholder="Receiver Phone" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Receiver Address</label>
-                                        <input type="text" class="form-control" name="receiver_address" placeholder="Receiver Address" required>
+                                        <input type="text" class="form-control" name="receiver_address" placeholder="Customer Address" required>
                                     </div>
                                 </div>
                             </div>
@@ -69,6 +51,7 @@
                                 <input type="text" class="form-control" name="description" placeholder="Order Description" required>
                             </div>
                         </div>
+                        <input type="hidden" name="market_id" value="{{ auth()->user()->market->id }}">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save</button>
@@ -83,10 +66,10 @@
 
 <script>
     
-    $('.market-order').click(function() {
-        $('#addOrderModal #form_add_orders input[name="market_id"]').remove();
-        $('#addOrderModal #form_add_orders').append(`<input type="hidden" name="market_id" value="${$(this).data('market')}">`)
-    });
+    // $('.market-order').click(function() {
+    //     $('#marketOrderModal #form_add_orders input[name="market_id"]').remove();
+    //     $('#marketOrderModal #form_add_orders').append(`<input type="hidden" name="market_id" value="${$(this).data('market')}">`)
+    // });
     
     // function getOrders(warehouse_id) {
     //     alert(warehouse_id);

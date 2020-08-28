@@ -76,7 +76,7 @@
                           <div class="col-md-6">
 							              <div class="form-group">
                                 <label>Market</label>
-                                <select name="driver_id" class="form-control">
+                                <select name="market_id" class="form-control">
                                   <option value="">Select Market</option>
                                   @foreach ($markets as $market)
                                     <option value="{{ $market->id }}">{{ $market->name }}</option>

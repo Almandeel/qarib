@@ -21,7 +21,9 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     Route::get('warehouse/orders/{id}', 'WarehouseController@orders')->name('warehouses.orders');
+    Route::get('market/orders', 'MarketController@orders')->name('market.orders');
     Route::get('return/orders/{driverOrderId}', 'DriverOrderController@returnOrder')->name('return.orders');
+    Route::post('market/orders', 'OrderController@marketOrdersStore')->name('market.orderstore');
 
 
     // API 

@@ -29,8 +29,11 @@
                   <td>{{ $order->market->name }}</td>
                   <td><span>{{ $order->address }}</span></td>
                   <td>
-                      {{-- <button class="btn btn-success btn-xs order" data-toggle="modal" data-order="{{ $order->id }}" data-target="#orderModal"><i class="fa fa-check"> Receved </i></button> --}}
-                      
+                      <form style="display: inline-block" action="{{ route('orders.update', $order->id) }}?type=accepted" method="post">
+                        @csrf
+                        @method('PUT')
+                        <button class="btn btn-success btn-xs"><i class="fa fa-closed-captioning"> Accepted </i></button>
+                      </form>
                       <form style="display: inline-block" action="{{ route('orders.destroy', $order->id) }}" method="post">
                         @csrf
                         @method('DELETE')

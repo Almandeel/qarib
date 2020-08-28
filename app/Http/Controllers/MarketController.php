@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\Market;
 use Illuminate\Http\Request;
 
@@ -107,5 +108,10 @@ class MarketController extends Controller
     public function destroy(Market $market)
     {
         //
+    }
+
+    public function orders() {
+        $orders = Order::where('market_id', auth()->user()->market->id)->get();
+        return view('dashboard.markets.orders', compact('orders'));
     }
 }

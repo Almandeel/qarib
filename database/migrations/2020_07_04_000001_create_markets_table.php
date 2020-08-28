@@ -24,7 +24,7 @@ class CreateMarketsTable extends Migration
              
             $table->increments('id');
             $table->string('name', 45);
-            $table->string('email', 45);
+            $table->string('email', 45)->nullable();
             $table->string('password', 64)->nullable();
             $table->double('delivery_cost')->nullable();
             $table->timestamps();

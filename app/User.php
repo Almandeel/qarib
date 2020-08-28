@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function driver() {
         return $this->belongsTo('App\Driver', 'driver_id');
     }
+
+    public function market() {
+        return $this->belongsTo('App\Market', 'market_id');
+    }
 }

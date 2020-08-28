@@ -108,15 +108,22 @@
                     </li>
                 @endpermission
 
-                <li class="nav-item" data-toggle="modal" data-target="#addOrderModal">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>Add Orders</p>
-                    </a>
-                </li>
-
                 @role('market')
+                    <li class="nav-item" data-toggle="modal" data-target="#marketOrderModal">
+                        <a href="#" class="nav-link ">
+                            <i class="nav-icon fa fa-plus"></i>
+                            <p>Add Orders</p>
+                        </a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a href="{{ route('market.orders') }}" class="nav-link">
+                            <i class="nav-icon fa fa-list"></i>
+                            <p>
+                                Orders
+                            </p>
+                        </a>
+                    </li>
                 @endrole
             </ul>
         </nav>

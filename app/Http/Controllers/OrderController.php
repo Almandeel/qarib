@@ -52,7 +52,13 @@ class OrderController extends Controller
             'description' => 'required',
         ]);
 
-        $order = Order::create($request->all());
+        $request_data = $request->except('_token');
+
+        if($request->market_id) {
+            $request_data['market_id'] = $request->market_id;
+        }
+
+        $order = Order::create($request_data);
 
         // $warehouse = WarehouseOrder::create([
         //     'order_id' => $order->id,
@@ -99,7 +105,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        if($request->type == 'accepted') {
+            $order->update([
+                'status' => Order::$status_accepted,
+            ]);
+            return back()->with('success', 'Success');
+        }
     }
 
     /**
@@ -121,5 +132,37 @@ class OrderController extends Controller
     public function orders(Request $request) {
         $orders = Order::where('market_id', $request->market)->where('status', 0)->get();
         return response()->json($orders);
+    }
+
+
+    public function marketOrdersStore(Request $request) {
+        $request->validate([
+            'amount'            => 'required' ,
+            'receiver'          => 'required | string | max:45',
+            'receiver_address'  => 'required | string | max:45', 
+            'receiver_phone'    => 'required | string | max:45', 
+            'description' => 'required',
+        ]);
+
+        $request_data = $request->except('_token');
+
+        $request_data['customer_name']      =  auth()->user()->name;
+        $request_data['customer_phone']     =  auth()->user()->phone;
+        $request_data['customer_address']   =  auth()->user()->address;
+
+
+        $order = Order::create($request_data);
+
+        // $warehouse = WarehouseOrder::create([
+        //     'order_id' => $order->id,
+        //     'user_id' => auth()->user()->id,
+        //     'warehouse_id' => $request->warehouse_id,
+        // ]);
+
+        $order->update([
+            'order_number' => date('Ym') . $order->id
+        ]);
+
+        return back()->with('success', 'Success');
     }
 }

@@ -23,12 +23,12 @@ class CreateDriverOrdersTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('order_id');
-            $table->unsignedInteger('warehouseorder_id');
+            $table->unsignedInteger('warehouseorder_id')->nullable();
             $table->unsignedInteger('driver_id');
             $table->unsignedInteger('user_id');
             $table->tinyInteger('status')->nullable()->default('0');
-            $table->double('cod')->nullable()->default(null);
-            $table->double('bank')->nullable()->default(null);
+            $table->double('cod')->nullable()->default(0);
+            $table->double('bank')->nullable()->default(0);
 
             $table->index(["warehouseorder_id"], 'fk_driver_orders_warehouseorder_idx');
 
