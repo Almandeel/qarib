@@ -22,7 +22,11 @@ return [
         ],
 
         'drivers' => [
-            'drivers'               => 'r',
+            'dashboard'             => 'r',
+        ],
+
+        'market' => [
+            'dashboard'             => 'r',
         ],
 
     ],

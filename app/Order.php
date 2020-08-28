@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     public static $status_default       = 0;
-    public static $status_in_warehouse  = 1;
+    public static $status_accepted      = 1;
     public static $status_in_drivers    = 2;
     public static $status_done          = 3;
     public static $status_schedule      = 4;

@@ -68,8 +68,21 @@
                           <div class="form-group">
                               <label>driver</label>
                               <select name="driver_id" class="form-control">
+                                <option value="">Select Driver</option>
                                 @foreach ($drivers as $driver)
                                   <option value="{{ $driver->id }}" {{ $user->driver_id == $driver->id ? 'selected' : '' }}>{{ $driver->name }}</option>
+                                @endforeach
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                              <label>Market</label>
+                              <option value="">Select Market</option>
+                              <select name="market_id" class="form-control">
+                                @foreach ($markets as $market)
+                                  <option value="{{ $market->id }}" {{ $user->market_id == $market->id ? 'selected' : '' }}>{{ $market->name }}</option>
                                 @endforeach
                               </select>
                           </div>

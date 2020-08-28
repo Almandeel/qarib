@@ -18,12 +18,11 @@
                                     @endforeach
                                 </select>
                             </div>
-
                             <div class="form-group">
                                 <label>Orders</label>
                                 <select  multiple="multiple" name="order_id[]" class="form-control">
-                                    @foreach ($warehouse->warehouseOrders->where('status', 0) as $order)
-                                        <option value="{{ $order->order->id }}">Order ID : {{ $order->order->order_number }}</option>
+                                    @foreach ($orders as $order)
+                                        <option value="{{ $order->id }}">Order ID : {{ $order->order_number }}</option>
                                     @endforeach
                                 </select>
                             </div>

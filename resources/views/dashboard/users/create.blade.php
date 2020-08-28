@@ -65,8 +65,21 @@
 							              <div class="form-group">
                                 <label>driver</label>
                                 <select name="driver_id" class="form-control">
+                                  <option value="">Select driver</option>
                                   @foreach ($drivers as $driver)
                                     <option value="{{ $driver->id }}">{{ $driver->name }}</option>
+                                  @endforeach
+                                </select>
+								            </div>
+                          </div>
+
+                          <div class="col-md-6">
+							              <div class="form-group">
+                                <label>Market</label>
+                                <select name="driver_id" class="form-control">
+                                  <option value="">Select Market</option>
+                                  @foreach ($markets as $market)
+                                    <option value="{{ $market->id }}">{{ $market->name }}</option>
                                   @endforeach
                                 </select>
 								            </div>

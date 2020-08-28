@@ -57,47 +57,47 @@
                 <tbody>
                     <tr>
                         <th>Order ID</th>
-                        <td>{{ $order->order_number }}</td>
+                        <td>{{ $order->order->order_number }}</td>
                     </tr>
                     <tr>
                         <th>Customer</th>
-                        <td id="customer">{{ $order->customer }}</td>
+                        <td id="customer">{{ $order->order->customer }}</td>
                     </tr>
                     <tr>
                         <th>Phone</th>
-                        <td id="phone">{{ $order->phone }}</td>
+                        <td id="phone">{{ $order->order->phone }}</td>
                     </tr>
                     <tr>
                         <th>Address</th>
-                        <td id="address">{{ $order->address }}</td>
+                        <td id="address">{{ $order->order->address }}</td>
                     </tr>
                     <tr>
                         <th>Receiver</th>
-                        <td id="receiver">{{ $order->receiver }}</td>
+                        <td id="receiver">{{ $order->order->receiver }}</td>
                     </tr>
                     <tr>
                         <th>Receiver Phone</th>
-                        <td id="receiver_phone">{{ $order->receiver_phone }}</td>
+                        <td id="receiver_phone">{{ $order->order->receiver_phone }}</td>
                     </tr>
                     <tr>
                         <th>Receiver Address</th>
-                        <td id="receiver_address">{{ $order->receiver_address }}</td>
+                        <td id="receiver_address">{{ $order->order->receiver_address }}</td>
                     </tr>
                     <tr>
                         <th>Amount</th>
-                        <td id="amount">{{ $order->amount }}</td>
+                        <td id="amount">{{ $order->order->amount }}</td>
                     </tr>
                     <tr>
                         <th>Pyment Status</th>
-                        <td id="pyment">{{ $order->pyment_status ? 'Pay' : 'Non pay' }}</td>
+                        <td id="pyment">{{ $order->order->pyment_status ? 'Pay' : 'Non pay' }}</td>
                     </tr>
                     <tr>
                         <th>Delivery amount</th>
-                        <td id="delivery_amount">{{ $order->delivery_amount }}</td>
+                        <td id="delivery_amount">{{ $order->order->delivery_amount }}</td>
                     </tr>
                     <tr>
                         <th>Description</th>
-                        <td id="description">{{ $order->description }}</td>
+                        <td id="description">{{ $order->order->description }}</td>
                     </tr>
                     <tr>
                         <th>options</th>
@@ -109,11 +109,11 @@
                                 @method('PUT')
                                 <button class="btn btn-success btn-sm"><i class="fa fa-check"></i></button>
                             </form>
-                            <form style="display: inline-block" action="{{ route('driverorders.update', $order->id) }}?type=schedule" method="post">
+                            {{-- <form style="display: inline-block" action="{{ route('driverorders.update', $order->id) }}?type=schedule" method="post">
                                 @csrf 
                                 @method('PUT')
                                 <button class="btn btn-dark btn-sm"><i class="fa fa-clock"></i></button>
-                            </form>
+                            </form> --}}
                             <form style="display: inline-block" action="{{ route('driverorders.update', $order->id) }}?type=cancel" method="post">
                                 @csrf
                                 @method('PUT')

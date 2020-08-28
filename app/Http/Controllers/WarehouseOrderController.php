@@ -124,37 +124,35 @@ class WarehouseOrderController extends Controller
     public function status(Request $request) {
         for ($index=0; $index < count($request->order_id); $index++) {
             $order = Order::find($request->order_id[$index]);
-            $warehouseOrder = WarehouseOrder::find($order->warehouseOrder->id);
+            // $warehouseOrder = WarehouseOrder::find($order->warehouseOrder->id);
             if($order->status == Order::$status_done) {
-                $warehouseOrder->update([
-                    'status' => 2
-                ]);
+                // $warehouseOrder->update([
+                //     'status' => 2
+                // ]);
 
                 $order->update([
                     'driver_amount' => $order->delivery_amount - ($order->delivery_amount * $order->driverOrders->last()->driver->commission  / 100),
                     'net' => ($order->delivery_amount * $order->driverOrders->last()->driver->commission  / 100),
+                    'status' => Order::$status_done
                 ]);
 
             }elseif($order->status == Order::$status_schedule) {
-                $warehouseOrder->update([
-                    'status' => 0
-                ]);
+                // $warehouseOrder->update([
+                //     'status' => 0
+                // ]);
 
                 $order->update([
-                    'status' => Order::$status_in_warehouse
+                    'status' => Order::$status_accepted
                 ]);
             }elseif($order->status == Order::$status_cancel) {
-                $warehouseOrder->update([
-                    'status' => 3
-                ]);
-
-                $order->update([
-                    'status' => Order::$status_cancel
-                ]);
+                // $warehouseOrder->update([
+                //     'status' => 3
+                // ]);
 
                 $order->update([
                     'driver_amount' => $order->delivery_amount - ($order->delivery_amount * $order->driverOrders->last()->driver->commission  / 100),
                     'net' => ($order->delivery_amount * $order->driverOrders->last()->driver->commission  / 100),
+                    'status' => Order::$status_cancel
                 ]);
             }
     

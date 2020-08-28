@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use App\User;
 use App\Driver;
+use App\Market;
 use App\Employee;
 use App\Permission;
 use Illuminate\Http\Request;
@@ -41,8 +42,9 @@ class UserController extends Controller
     {
         $permissions = Permission::all();
         $drivers = Driver::all();
+        $markets = Market::all();
         $roles = Role::all();
-        return view('dashboard.users.create',compact('drivers', 'permissions', 'roles'));
+        return view('dashboard.users.create',compact('drivers', 'permissions', 'roles', 'markets'));
     }
 
     /**
@@ -58,8 +60,20 @@ class UserController extends Controller
             'password'      => 'required | string | min:6',
         ]);
         
-        $request_data = $request->except('password');
+        $request_data = $request->except('password', 'driver_id', 'market_id');
+
+        if($request->driver_id) {
+            $request_data['driver_id'] = $request->driver_id;
+        }
+
+        if($request->market_id) {
+            $request_data['market_id'] = $request->market_id;
+        }
+
         $request_data['password'] = bcrypt($request->password);
+
+
+
         $user = User::create($request_data);
 
         
@@ -99,12 +113,13 @@ class UserController extends Controller
         $permissions = Permission::all();
         $roles = Role::all();
         $drivers = Driver::all();
+        $markets = Market::all();
 
         // find the permissions of user
         $user_permissions = [];
         $user_permissions = json_encode(array_column($user->permissions->toArray(), 'id'));
         
-        return view('dashboard.users.edit', compact('user', 'drivers', 'permissions', 'roles', 'user_permissions'));
+        return view('dashboard.users.edit', compact('user', 'drivers', 'permissions', 'roles', 'user_permissions', 'markets'));
         
     }
 
@@ -122,7 +137,15 @@ class UserController extends Controller
             'password'      => 'nullable | string | min:6',
         ]);
     
-        $request_data = $request->except('password');
+        $request_data = $request->except('password', 'driver_id', 'market_id');
+
+        if($request->driver_id) {
+            $request_data['driver_id'] = $request->driver_id;
+        }
+
+        if($request->market_id) {
+            $request_data['market_id'] = $request->market_id;
+        }
 
         if($request->password) {
             $request_data['password'] = bcrypt($request->password);

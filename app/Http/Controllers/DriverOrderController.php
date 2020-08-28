@@ -55,11 +55,8 @@ class DriverOrderController extends Controller
 
             $order->update(['status' => Order::$status_in_drivers]);
 
-            $order->warehouseOrder->update(['status' => '1']);
-
             driverOrder::create([
                 'order_id' => $order->id,
-                'warehouseorder_id' => 	$order->warehouseOrder->id,
                 'driver_id' => $request->driver_id,
                 'user_id' =>  auth()->user()->id
             ]);
@@ -76,9 +73,9 @@ class DriverOrderController extends Controller
             'amount' => $amount
         ]);
 
-        $bill->driver->update([
-            'status' => 1
-        ]);
+        // $bill->driver->update([
+        //     'status' => 1
+        // ]);
 
         return back()->with('success', 'success');
     }

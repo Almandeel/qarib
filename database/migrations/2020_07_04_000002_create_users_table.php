@@ -27,10 +27,10 @@ class CreateUsersTable extends Migration
             $table->string('email', 25)->nullable();
             $table->string('password', 64);
             $table->unsignedInteger('driver_id')->nullable();
+            $table->unsignedInteger('market_id')->nullable();
             $table->tinyInteger('status')->nullable()->default('1');
 
             $table->unique(["username"], 'username_UNIQUE');
-
 
 
             $table->timestamps();
@@ -38,7 +38,12 @@ class CreateUsersTable extends Migration
             $table->foreign('driver_id')
             ->references('id')->on('drivers')
             ->onDelete('no action')
-            ->onUpdate('no action');
+            ->onUpdate('cascade');
+
+            $table->foreign('market_id')
+            ->references('id')->on('markets')
+            ->onDelete('no action')
+            ->onUpdate('cascade');
         });
     }
 

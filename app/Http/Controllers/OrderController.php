@@ -54,15 +54,15 @@ class OrderController extends Controller
 
         $order = Order::create($request->all());
 
-        $warehouse = WarehouseOrder::create([
-            'order_id' => $order->id,
-            'user_id' => auth()->user()->id,
-            'warehouse_id' => $request->warehouse_id,
-        ]);
+        // $warehouse = WarehouseOrder::create([
+        //     'order_id' => $order->id,
+        //     'user_id' => auth()->user()->id,
+        //     'warehouse_id' => $request->warehouse_id,
+        // ]);
 
         $order->update([
-            'status' => Order::$status_in_warehouse,
-            'order_number' => ($order->id * rand(0, 10000))
+            'status' => Order::$status_accepted,
+            'order_number' => date('Ym') . $order->id
         ]);
 
         return back()->with('success', 'Success');

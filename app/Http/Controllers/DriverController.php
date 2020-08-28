@@ -60,10 +60,9 @@ class DriverController extends Controller
      */
     public function show(Driver $driver)
     {
-        $user_warehouses = WarehouseUsers::where('user_id', auth()->user()->id)->get();
+        // $user_warehouses = WarehouseUsers::where('user_id', auth()->user()->id)->get();
         $orders = DriverOrder::where('driver_id', $driver->id)->where('status', 0)->get();
-        $drivers = Driver::all();
-        return view('dashboard.drivers.show', compact('driver', 'user_warehouses', 'orders', 'drivers'));
+        return view('dashboard.drivers.show', compact('driver', 'orders'));
 
     }
 

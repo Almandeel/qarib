@@ -48,12 +48,12 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('bills.index') }}?type=warehouses" class="nav-link">
                                     <i class="fa fa-home nav-icon"></i>
                                     <p>Warehouses</p>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a href="{{ route('bills.index') }}?type=drivers" class="nav-link">
                                     <i class="fa fa-users nav-icon"></i>
@@ -76,14 +76,14 @@
                 @endpermission
 
                 @permission('warehouses-read')
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('warehouses.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Warehouse
                             </p>
                         </a>
-                    </li>
+                    </li> --}}
                 @endpermission
 
                 @permission('markets-read')
@@ -108,6 +108,16 @@
                     </li>
                 @endpermission
 
+                <li class="nav-item" data-toggle="modal" data-target="#addOrderModal">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Add Orders</p>
+                    </a>
+                </li>
+
+                @role('market')
+
+                @endrole
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

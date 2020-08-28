@@ -12,6 +12,7 @@
     @endcomponent --}}
     <div class="card">
         <div class="card-header">
+            <button class="btn btn-primary btn-xs order float-right" data-toggle="modal" data-target="#OrderWarehouseModal" ><i class="fa fa-car"></i> Driver </button>
         </div>
         <div class="card-body">
             <table id="datatable" class="table table-bordered table-hover text-center">
@@ -57,4 +58,10 @@
 
 
 @include('dashboard.modals.market')
+@include('dashboard.modals.order-warehouse')
+
+@stack('select2')
+@include('partials._select2')
+
+
 @endsection

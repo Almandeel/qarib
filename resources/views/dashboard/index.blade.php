@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Main content -->
-@permission('dashboard-read')
+@role('superadmin')
 <section class="content">
     <div class="container-fluid">
         <!-- Info boxes -->
@@ -180,55 +180,82 @@
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     @isset($search_order)
-                                        <table id="datatable" class="table table-striped text-center">
-                                            <thead>
-                                                <tr>
-                                                    <th>Order ID</th>
-                                                    <th>Customer</th>
-                                                    <th>phone</th>
-                                                    <th>Address</th>
-                                                    <th>Market</th>
-                                                    <th>status</th>
-                                                    <th>driver</th>
-                                                    <th>Delivered at</th>
-                                                </tr>
-                                            </thead>
+                                        <table id="datatable" class="table table-bordered table-striped text-center">
                                             <tbody>
                                                 <tr>
+                                                    <th>Order ID</th>
                                                     <td>{{ $search_order->order_number }}</td>
-                                                    <td>{{ $search_order->customer }}</td>
-                                                    <td>{{ $search_order->phone }}</td>
-                                                    <td>{{ $search_order->address }}</td>
-                                                    <td>{{ $search_order->market->name ?? 'Customer Services' }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Customer</th>
+                                                    <td id="customer">{{ $search_order->customer }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Phone</th>
+                                                    <td id="phone">{{ $search_order->phone }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Address</th>
+                                                    <td id="address">{{ $search_order->address }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Receiver</th>
+                                                    <td id="receiver">{{ $search_order->receiver }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Receiver Phone</th>
+                                                    <td id="receiver_phone">{{ $search_order->receiver_phone }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Receiver Address</th>
+                                                    <td id="receiver_address">{{ $search_order->receiver_address }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Amount</th>
+                                                    <td id="amount">{{ $search_order->amount }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Pyment Status</th>
+                                                    <td id="pyment">{{ $search_order->pyment_status ? 'Pay' : 'Non pay' }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Delivery amount</th>
+                                                    <td id="delivery_amount">{{ $search_order->delivery_amount }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <td id="description">{{ $search_order->description }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Status</th>
                                                     <td>
-                                                        @if($search_order->status == \App\Order::$status_in_warehouse)
-                                                            In Warehouse
+                                                        @if($search_order->status == \App\Order::$status_accepted)
+                                                            Accepted
                                                         @endif 
-
+    
                                                         @if($search_order->status == \App\Order::$status_in_drivers)
                                                             In Driver
-
                                                         @endif 
-
                                                         @if($search_order->status == \App\Order::$status_done)
                                                             Delivered
                                                         @endif
-
+    
                                                         @if($search_order->status == \App\Order::$status_default)
                                                             In Market
                                                         @endif
-
+    
                                                         @if($search_order->status == \App\Order::$status_cancel)
                                                             Canceled
                                                         @endif
                                                     </td>
-                                                    @if($search_order->status != 0)
-                                                        <td>{{ $search_order->driverOrders->last()->driver->name ?? '' }}</td>
-                                                        <td>{{ $search_order->driverOrders->last()->updated_at->format('Y-m-d H:i') ?? '' }}</td>
-                                                    @else 
-                                                        <td></td>
-                                                        <td></td>
-                                                    @endif
+                                                </tr>
+                                                <tr>
+                                                    <th>driver</th>
+                                                    <td>{{ $search_order->driverOrders->last()->driver->name ?? '' }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Delivered at</th>
+                                                    <td>{{ $search_order->driverOrders->last()->updated_at->format('Y-m-d H:i') ?? '' }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -252,8 +279,7 @@
     </div>
     <!--/. container-fluid -->
 </section>
-@endpermission
-
+@endrole
 
 @role('drivers')
 <section class="content">
@@ -360,6 +386,13 @@
     </div>
 </section>
 @endrole
+
+@role('market')
+<section class="content">
+
+</section>
+@endrole
 <!-- /.content -->
+@include('dashboard.modals.add_order')
 
 @endsection

@@ -8,7 +8,8 @@
 <div class="card">
   <div class="card-header">
       <h3 class="card-title">Orders List </h3>
-      <button class="btn btn-success btn-xs order float-right order" data-toggle="modal" data-target="#orderModal"><i class="fa fa-check"> Bill Receved </i></button>
+      {{-- <button class="btn btn-success btn-xs order float-right order" data-toggle="modal" data-target="#orderModal"><i class="fa fa-check"> Bill Receved </i></button> --}}
+      <button class="btn btn-primary btn-xs order float-right order" style="margin: 0 2%" data-toggle="modal" data-target="#addOrderModal"  ><i class="fa fa-list"></i> Add Orders </button>
   </div>
   <!-- /.card-header -->
   <div class="card-body">
@@ -41,9 +42,10 @@
           </tbody>
       </table>
   </div>
-  <!-- /.card-body -->
 
-  @include('dashboard.modals.warehouseOrder')
+  {{-- @include('dashboard.modals.warehouseOrder') --}}
+  @include('dashboard.modals.show-order')
+  @include('dashboard.modals.add_order')
   @include('partials._select2')
 
 

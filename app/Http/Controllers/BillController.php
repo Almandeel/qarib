@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Bill;
+use App\Order;
+use App\Driver;
 use Illuminate\Http\Request;
 
 class BillController extends Controller
@@ -20,8 +22,9 @@ class BillController extends Controller
         }else {
             $bills = Bill::where('driver_id', '!=', null)->get();
         }
-
-        return view('dashboard.bills.index', compact('bills', 'type'));
+        $drivers = Driver::get();
+        $orders = Order::where('status', 1)->get();
+        return view('dashboard.bills.index', compact('bills', 'type', 'drivers', 'orders'));
     }
 
     /**
