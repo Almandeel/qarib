@@ -42,17 +42,16 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'customer'          => 'required | string | max:45', 
             'phone'             => 'required | string | max:45',  
             'address'           => 'required | string | max:255',
             'amount'            => 'required' ,
-            'receiver'          => 'required | string | max:45',
             'receiver_address'  => 'required | string | max:45', 
             'receiver_phone'    => 'required | string | max:45', 
             'description' => 'required',
         ]);
 
         $request_data = $request->except('_token');
+        $request_data['delivery_amount'] = $request->from == $request->to ? 200 : 250;
 
         if($request->market_id) {
             $request_data['market_id'] = $request->market_id;

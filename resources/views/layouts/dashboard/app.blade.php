@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title> Gazal | Dashboard </title>
+    <title> Rayied | @yield('title') </title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/fontawesome-free/css/all.min.css') }}">
@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dashboard/dist/css/adminlte.min.css') }}">
+
+    @if(app()->getlocale() == 'ar')
+        <link rel="stylesheet" href="{{ asset('dashboard/css/rtl.css') }}">
+    @endif
 
     @stack('css')
     {{-- custome style --}}
@@ -44,12 +48,11 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Dashboard</h1>
+                            <h1 class="m-0 text-dark">الرئيسية</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard </li>
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">الرئيسية</a></li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -79,7 +82,7 @@
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title text-right" id="profileModalLabel">Profile</h5>
+                <h5 class="modal-title text-right" id="profileModalLabel">الملف الشخصي</h5>
                 {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button> --}}
@@ -89,21 +92,21 @@
                         @csrf 
                         @method('PUT')
                         <div class="form-group">
-                            <label>Username</label>
-                            <input type="text" name="username" class="form-control" placeholder="Username" required value="{{ auth()->user()->username }}">
+                            <label>اسم المستخدم</label>
+                            <input type="text" name="username" class="form-control" placeholder="اسم المستخدم" required value="{{ auth()->user()->username }}">
                         </div>
                         <div class="form-group">
-                            <label>Old Password</label>
-                            <input type="password" name="old_password" class="form-control" placeholder="Old Password" required>
+                            <label>كلمة المرور القديمة </label>
+                            <input type="password" name="old_password" class="form-control" placeholder="كلمة المرور القديمة " required>
                         </div>
                         <div class="form-group">
-                            <label>New Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="New Password" >
+                            <label>كلمة المرور الجديدة </label>
+                            <input type="password" name="password" class="form-control" placeholder="كلمة المرور الجديدة " >
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                        <button type="submit" class="btn btn-primary">حفظ</button>
                     </div>
                 </form>
             </div>
@@ -177,14 +180,14 @@
 				e.preventDefault()
 				let that = $(this);
 				Swal.fire({
-					title: 'Do You wont Logout ?',
+					title: 'هل تريد المغادرة ؟ ',
 					text: "",
 					icon: 'warning',
 					showCancelButton: true,
 					confirmButtonColor: '#3085d6',
 					cancelButtonColor: '#d33',
-					cancelButtonText: 'Cancel',
-					confirmButtonText: 'Yes',
+					cancelButtonText: 'اغلاق',
+					confirmButtonText: 'نعم',
 				}).then((result) => {
 					if (result.value) {
 						if(that.data('callback')){

@@ -21,7 +21,7 @@
                         <a href="{{ route('dashboard.index') }}" class="nav-link">
                             <i class="nav-icon fa fa-th"></i>
                             <p>
-                                Dashboard
+                                @lang('global.dashboard')
                             </p>
                         </a>
                     </li>
@@ -32,7 +32,7 @@
                         <a href="{{ route('orders.index') }}" class="nav-link">
                             <i class="nav-icon fa fa-list"></i>
                             <p>
-                                Orders
+                                @lang('global.orders')
                             </p>
                         </a>
                     </li>
@@ -43,8 +43,8 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-file"></i>
                             <p>
-                                Bills
-                                <i class="fas fa-angle-left right"></i>
+                                @lang('global.bills')
+                                <i class="fas fa-angle-left left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
@@ -57,7 +57,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('bills.index') }}?type=drivers" class="nav-link">
                                     <i class="fa fa-users nav-icon"></i>
-                                    <p>Drivers</p>
+                                    <p>@lang('global.drivers')</p>
                                 </a>
                             </li>
                         </ul>
@@ -69,7 +69,7 @@
                         <a href="{{ route('drivers.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-truck"></i>
                             <p>
-                                Drivers
+                                @lang('global.drivers')
                             </p>
                         </a>
                     </li>
@@ -91,7 +91,7 @@
                         <a href="{{ route('markets.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-building"></i>
                             <p>
-                                Markets
+                                @lang('global.markets')
                             </p>
                         </a>
                     </li>
@@ -102,7 +102,7 @@
                         <a href="{{ route('users.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
-                                Users
+                                @lang('global.users')
                             </p>
                         </a>
                     </li>
@@ -112,7 +112,7 @@
                     <li class="nav-item" data-toggle="modal" data-target="#marketOrderModal">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fa fa-plus"></i>
-                            <p>Add Orders</p>
+                            <p>@lang('global.add') @lang('global.orders') </p>
                         </a>
                     </li>
 
@@ -120,7 +120,7 @@
                         <a href="{{ route('market.orders') }}" class="nav-link">
                             <i class="nav-icon fa fa-list"></i>
                             <p>
-                                Orders
+                                @lang('global.orders')
                             </p>
                         </a>
                     </li>
