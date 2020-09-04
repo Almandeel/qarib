@@ -28,13 +28,28 @@
                 @endpermission
 
                 @permission('orders-read')
-                    <li class="nav-item">
-                        <a href="{{ route('orders.index') }}" class="nav-link">
-                            <i class="nav-icon fa fa-list"></i>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-list"></i>
                             <p>
                                 @lang('global.orders')
+                                <i class="fas fa-angle-left left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('orders.index') }}?type=deactive" class="nav-link">
+                                    <i class="fa fa-list nav-icon"></i>
+                                    <p>الطلبات الجديدة</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('orders.index') }}?type=active" class="nav-link">
+                                    <i class="fa fa-list nav-icon"></i>
+                                    <p>الطلبات الحالية</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endpermission
 

@@ -19,12 +19,21 @@
         <link rel="stylesheet" href="{{ asset('dashboard/css/rtl.css') }}">
     @endif
 
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+
     @stack('css')
     {{-- custome style --}}
 
     <style>
+        * {
+            font-family: 'Amiri', serif;
+        }
         .modal-header {
             direction:rtl;
+        }
+
+        #swal2-content {
+            text-align: center;
         }
     </style>
     <!-- Google Font: Source Sans Pro -->
@@ -207,8 +216,7 @@
                 @if (session()->has($icon))
                     Swal.fire({
                         icon: '{{ $icon }}',
-                        title: '{{ $title }}',
-                        text: '{{ session()->get($icon) }}',
+                        title: '{{ session()->get($icon) }}',
                         okButtonText: 'حسنا',
                     })
                 @endif

@@ -31,16 +31,23 @@
                   <td>{{ $order->receiver_phone }}</td>
                   <td>{{ $order->description }}</td>
                   <td>
-                      <form style="display: inline-block" action="{{ route('orders.update', $order->id) }}?type=accepted" method="post">
-                        @csrf
-                        @method('PUT')
-                        <button class="btn btn-success btn-xs"><i class="fa fa-closed-captioning"> موافقة </i></button>
-                      </form>
+                      @if($order->status == 0)
+                        <form style="display: inline-block" action="{{ route('orders.update', $order->id) }}?type=accepted" method="post">
+                          @csrf
+                          @method('PUT')
+                          <button class="btn btn-success btn-xs"><i class="fa fa-closed-captioning"> موافقة </i></button>
+                        </form>
+                      @endif
+
+                      @if($order->status == 1)
+                        <a class="btn btn-warning btn-xs" href="{{ route('orders.edit', $order->id) }}"><i class="fa fa-edit"></i> تعديل</a>
+                      @endif
+
                       <form style="display: inline-block" action="{{ route('orders.destroy', $order->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger btn-xs delete"><i class="fa fa-closed-captioning"> حذف </i></button>
-                    </form>
+                      </form>
                   </td>
               </tr>
             @endforeach

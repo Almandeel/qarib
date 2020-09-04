@@ -15,12 +15,16 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::where('status', 0)->get();
+        if($request->type == 'deactive') {
+            $orders = Order::where('status', 0)->get();
+        }else {
+            $orders = Order::where('status', 1)->get();
+        }
         $markets = Market::all();
-        $warehouses_user = WarehouseUsers::where('user_id', auth()->user()->id)->get();
-        return view('dashboard.orders.index', compact('orders', 'warehouses_user', 'markets'));
+        // $warehouses_user = WarehouseUsers::where('user_id', auth()->user()->id)->get();
+        return view('dashboard.orders.index', compact('orders', 'markets'));
     }
 
     /**
@@ -70,7 +74,7 @@ class OrderController extends Controller
             'order_number' => date('Ym') . $order->id
         ]);
 
-        return back()->with('success', 'Success');
+        return back()->with('success', 'تمت العملية بنجاح');
     }
 
     /**
@@ -92,7 +96,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('dashboard.orders.edit', compact('order'));
     }
 
     /**
@@ -108,7 +112,27 @@ class OrderController extends Controller
             $order->update([
                 'status' => Order::$status_accepted,
             ]);
-            return back()->with('success', 'Success');
+            return back()->with('success', 'تمت العملية بنجاح');
+        }else {
+            $request->validate([
+                'phone'             => 'required | string | max:45',  
+                'address'           => 'required | string | max:255',
+                'amount'            => 'required' ,
+                'receiver_address'  => 'required | string | max:45', 
+                'receiver_phone'    => 'required | string | max:45', 
+                'description' => 'required',
+            ]);
+    
+            $request_data = $request->except('_token');    
+
+            if($request->market_id) {
+                $request_data['market_id'] = $request->market_id;
+            }
+    
+            $order->update($request_data);
+
+
+            return redirect()->route('orders.index')->with('success', 'تمت العملية بنجاح');
         }
     }
 
@@ -162,6 +186,6 @@ class OrderController extends Controller
             'order_number' => date('Ym') . $order->id
         ]);
 
-        return back()->with('success', 'Success');
+        return back()->with('success', 'تمت العملية بنجاح');
     }
 }
