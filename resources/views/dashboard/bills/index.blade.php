@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.app', ['datatable' => true])
 
 @section('title')
-    Bills
+    الفواتير
 @endsection
 
 @section('content')
@@ -12,23 +12,23 @@
     @endcomponent --}}
     <div class="card">
         <div class="card-header">
-            <button class="btn btn-primary btn-xs order float-right" data-toggle="modal" data-target="#OrderWarehouseModal" ><i class="fa fa-car"></i> Driver </button>
+            <button class="btn btn-primary btn-xs order float-right" data-toggle="modal" data-target="#OrderWarehouseModal" ><i class="fa fa-car"></i> اضافة طلبات لمندوب </button>
         </div>
         <div class="card-body">
             <table id="datatable" class="table table-bordered table-hover text-center">
                 <thead>
                     <tr>
-                        <th>Number</th>
+                        <th>رقم الفتورة</th>
                         @if($type == 'warehouses')
                             <th>Market</th>
                             <th>Warehouse</th>
                         @else 
-                            <th>Driver</th>
+                            <th>مندوب التوصيل</th>
                         @endif
-                        <th>Orders</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Options</th>
+                        <th>عدد الطلبات</th>
+                        <th>قيمة الطلبات</th>
+                        <th>التاريخ</th>
+                        <th>خيارات</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,7 +46,7 @@
                             <td>{{ $bill->created_at->format('Y-m-d') }}</td>
                             <td>
                                 @permission('bills-read')
-                                    <a href="{{ route('bills.show', $bill->id) }}" class="btn btn-default btn-xs"><i class="fa fa-eye"></i> Show</a>
+                                    <a href="{{ route('bills.show', $bill->id) }}" class="btn btn-default btn-xs"><i class="fa fa-eye"></i> عرض</a>
                                 @endpermission
                             </td>
                         </tr>

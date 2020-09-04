@@ -4,25 +4,25 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="OrderWarehouseModalLabel">Add Order</h4>
+                    <h4 class="modal-title" id="OrderWarehouseModalLabel">اضافة طلبات لمندوب</h4>
                 </div>
                 <div class="add-order">
                     <form id="form_driver_orders" action="{{ route('driverorders.store') }}" method="post">
                         @csrf 
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Driver</label>
-                                <select name="driver_id" class="form-control">
+                                <label>مندوب التوصيل</label>
+                                <select name="driver_id" class="form-control" required>
                                     @foreach ($drivers as $driver)
                                         <option value="{{ $driver->id }}">{{ $driver->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Orders</label>
-                                <select  multiple="multiple" name="order_id[]" class="form-control">
+                                <label>الطلبات</label>
+                                <select  multiple="multiple" name="order_id[]" class="form-control" required>
                                     @foreach ($orders as $order)
-                                        <option value="{{ $order->id }}">Order ID : {{ $order->order_number }}</option>
+                                        <option value="{{ $order->id }}">رقم الطلب : {{ $order->order_number }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -30,8 +30,8 @@
 
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">اغلاق</button>
+                            <button type="submit" class="btn btn-primary">حفظ</button>
                         </div>
                     </form>
                 </div>

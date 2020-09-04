@@ -11,16 +11,16 @@
         <table class="table table-bordered table-hover text-center">
             <thead>
                 <tr>
-                    <th>Number</th>
+                    <th>رقم الطلب</th>
                     @if($bill->warehouse_id != null)
                         <th>Market</th>
                         <th>Warehouse</th>
                     @else 
-                        <th>Driver</th>
+                        <th>مندوب التوصيل</th>
                     @endif
-                    <th>Orders</th>
-                    <th>Amount</th>
-                    <th>Date</th>
+                    <th>عدد الطلبات</th>
+                    <th>قيمة الطلبات</th>
+                    <th>التاريخ</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,17 +55,17 @@
                                     @csrf
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4>Orders Done </h4>
+                                            <h4>الطلبات التامة</h4>
                                         </div>
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             <table class="table table-responsive table-bordered table-hover text-center">
                                                 <thead>
                                                     <tr>
-                                                        <th>Order ID</th>
-                                                        <th>address</th>
-                                                        <th>amount</th>
-                                                        <th>Option</th>
+                                                        <th>رقم الطلب</th>
+                                                        <th>عنوان التسليم</th>
+                                                        <th>القيمة</th>
+                                                        <th>خيارات</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -78,7 +78,7 @@
                                                         @if($order->order->status == \App\Order::$status_done)
                                                             <tr>
                                                                 <td>{{ $order->order->order_number }}</td>
-                                                                <td>{{ $order->order->address }}</td>
+                                                                <td>{{ $order->order->receiver_address }}</td>
                                                                 <td>{{ $order->order->amount }}</td>
                                                                 <td>
                                                                     <a href="{{ route('return.orders', $bill->driver->orders->where('order_id', $order->order->id)->last()->id) }}?type=schedule" class="btn btn-dark btn-xs"><i class="fa fa-clock"></i></a>
@@ -95,7 +95,7 @@
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
-                                                    <th>Total</th>
+                                                    <th>الاجمالى</th>
                                                     <th></th>
                                                     <th>{{ $total_done }}</th>
                                                 </tfoot>
@@ -105,7 +105,7 @@
                                     </div>
                                 </div>
                         
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Orders Return</h4>
@@ -151,22 +151,22 @@
                                     </div>
                                     <!-- /.card-body -->
                                 </div>
-                            </div>
+                            </div> --}}
                         
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Orders Cancel</h4>
+                                        <h4>الطلبات الملغية</h4>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
                                         <table class="table table-responsive table-bordered table-hover text-center">
                                             <thead>
                                                 <tr>
-                                                    <th>Order ID</th>
-                                                    <th>address</th>
-                                                    <th>amount</th>
-                                                    <th>options</th>
+                                                    <th>رقم الطلب</th>
+                                                    <th>عنوان التسليم</th>
+                                                    <th>القيمة</th>
+                                                    <th>خيارات</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -174,7 +174,7 @@
                                                     @if($order->order->status == \App\Order::$status_cancel)
                                                         <tr>
                                                             <td>{{ $order->order->order_number }}</td>
-                                                            <td>{{ $order->order->address }}</td>
+                                                            <td>{{ $order->order->receiver_address }}</td>
                                                             <td>{{ $order->order->amount }}</td>
                                                             <td>
                                                                 <a href="{{ route('return.orders', $bill->driver->orders->where('order_id', $order->order->id)->last()->id) }}?type=done" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>
@@ -191,7 +191,7 @@
                                                 @endforeach
                                             </tbody>
                                             <tfoot>
-                                                <th>Total</th>
+                                                <th>الاجمالى</th>
                                                 <th></th>
                                                 <th>{{ $total_cancel }}</th>
                                             </tfoot>
@@ -207,38 +207,40 @@
     @else
         <div class="card">
             <div class="card-header">
-                <h3>Orders</h3>
+                <h3>قائمة الطلبات</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
                 <table class="table table-bordered table-hover text-center">
                     <thead>
                         <tr>
-                            <th>Order ID</th>
-                            <th>Customer</th>
-                            <th>address</th>
-                            <th>phone</th>
-                            <th>amount</th>
-                            <th>status</th>
-                            <th>Driver At</th>
-                            <th>Delivered At</th>
+                            <th>رقم الطلب</th>
+                            <th>رقم العميل</th>
+                            <th>رقم المستلم</th>
+                            <th>عنوان الاستلام</th>
+                            <th>عنوان التسليم</th>
+                            <th>قيمة الطلب</th>
+                            <th>الحالة</th>
+                            <th>تم اضافة الطلب في</th>
+                            <th>تم التوصيل في </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($bill->billOrders as $order)
                         <tr>
                             <td>{{ $order->order->order_number }}</td>
-                            <td>{{ $order->order->customer }}</td>
-                            <td>{{ $order->order->address }}</td>
                             <td>{{ $order->order->phone }}</td>
+                            <td>{{ $order->order->receiver_phone }}</td>
+                            <td>{{ $order->order->address }}</td>
+                            <td>{{ $order->order->receiver_address }}</td>
                             <td>{{ $order->order->amount }}</td>
                             <td>
                                 @if($order->status == \App\Order::$status_cancel)
-                                    Cancel
+                                    الغاء
                                 @elseif($order->status == \App\Order::$status_schedule)
-                                    Return
+                                    ارجاع
                                 @else
-                                    Done
+                                    تم
                                 @endif
                             </td>
                             <td>{{ $order->order->driverOrders->last()->created_at->format('Y-m-d H:i') ?? '' }}</td>
@@ -254,38 +256,40 @@
 @else
     <div class="card">
         <div class="card-header">
-            <h3>Orders</h3>
+            <h3>قائمة الطلبات</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             <table class="table table-bordered table-hover text-center">
                 <thead>
                     <tr>
-                        <th>Order ID</th>
-                        <th>Customer</th>
-                        <th>address</th>
-                        <th>phone</th>
-                        <th>amount</th>
-                        <th>status</th>
+                        <th>رقم الطلب</th>
+                        <th>رقم العميل</th>
+                        <th>رقم المستلم</th>
+                        <th>عنوان الاستلام</th>
+                        <th>عنوان التسليم</th>
+                        <th>قيمة الطلب</th>
+                        <th>الحالة</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($bill->billOrders as $order)
                     <tr>
                         <td>{{ $order->order->order_number }}</td>
-                        <td>{{ $order->order->customer }}</td>
-                        <td>{{ $order->order->address }}</td>
-                        <td>{{ $order->order->phone }}</td>
-                        <td>{{ $order->order->amount }}</td>
-                        <td>
-                            @if($order->status == \App\Order::$status_cancel)
-                                Cancel
-                            @elseif($order->status == \App\Order::$status_schedule)
-                                Return
-                            @else
-                                Done
-                            @endif
-                        </td>
+                            <td>{{ $order->order->phone }}</td>
+                            <td>{{ $order->order->receiver_phone }}</td>
+                            <td>{{ $order->order->address }}</td>
+                            <td>{{ $order->order->receiver_address }}</td>
+                            <td>{{ $order->order->amount }}</td>
+                            <td>
+                                @if($order->status == \App\Order::$status_cancel)
+                                    الغاء
+                                @elseif($order->status == \App\Order::$status_schedule)
+                                    ارجاع
+                                @else
+                                    تم
+                                @endif
+                            </td>
                     </tr>
                     @endforeach
                 </tbody>
