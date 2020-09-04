@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title float-right" id="DriversModalLabel">Add Driver</h4>
+                    <h4 class="modal-title float-right" id="DriversModalLabel">اضافة مندوب </h4>
                 </div>
                 <form id="form_driver" action="{{ route('drivers.store') }}" method="post">
                     @csrf 
@@ -14,36 +14,36 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>name</label>
-                                    <input type="text" class="form-control" name="name" placeholder="name" required>
+                                    <label>الاسم</label>
+                                    <input type="text" class="form-control" name="name" placeholder="الاسم" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>phone</label>
-                                    <input type="number" class="form-control" name="phone" placeholder="phone" required>
+                                    <label>رقم الهاتف</label>
+                                    <input type="number" class="form-control" name="phone" placeholder="رقم الهاتف" required>
                                 </div>
                             </div>
                         </div>
     
                         <div class="form-group">
-                            <label>address </label>
-                            <input type="text" class="form-control" name="address" placeholder="address" required>
+                            <label>العنوان </label>
+                            <input type="text" class="form-control" name="address" placeholder="العنوان" required>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>email </label>
-                                    <input type="email" class="form-control" name="email" placeholder="email">
+                                    <label>البريد الالكتروني</label>
+                                    <input type="email" class="form-control" name="email" placeholder="البريد الالكتروني">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>salary </label>
-                                    <input type="number" class="form-control" name="salary" placeholder="salary">
+                                    <label>المرتب </label>
+                                    <input type="number" class="form-control" name="salary" placeholder="المرتب">
                                 </div>
                             </div>
                         </div>
@@ -52,22 +52,22 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>commission </label>
-                                    <input type="number" class="form-control" name="commission" placeholder="commission">
+                                    <label>العمولة </label>
+                                    <input type="number" class="form-control" name="commission" placeholder="العمولة">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>max orders </label>
-                                    <input type="number" class="form-control" name="max_orders" placeholder="max orders">
+                                    <label>عدد الطلبات </label>
+                                    <input type="number" class="form-control" name="max_orders" placeholder="عدد الطلبات ">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label>car </label>
-                            <input type="text" class="form-control" name="car" placeholder="car" required>
+                            <label>نوع العربة </label>
+                            <input type="text" class="form-control" name="car" placeholder="نوع العربة" required>
                         </div>
     
                         
@@ -75,8 +75,8 @@
 
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">اغلاق</button>
+                        <button type="submit" class="btn btn-primary">حفظ</button>
                     </div>
                 </form>
             </div>

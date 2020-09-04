@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Edit
+                        تعديل
                     </div>
                     <div class="card-body">
                       <div class="row">
@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                              <label>@lang('users.status')</label>
+                              <label>الحالة</label>
                               <select name="status" class="form-control">
                                 <option value="0" {{ $user->status == 0 ? 'selected' : '' }}>@lang('users.deactive')</option>
                                 <option value="1" {{ $user->status == 1 ? 'selected' : '' }}>@lang('users.active')</option>
@@ -66,9 +66,9 @@
 
                         <div class="col-md-6">
                           <div class="form-group">
-                              <label>driver</label>
+                              <label>المندوب</label>
                               <select name="driver_id" class="form-control">
-                                <option value="">Select Driver</option>
+                                <option value="">اختار المندوب </option>
                                 @foreach ($drivers as $driver)
                                   <option value="{{ $driver->id }}" {{ $user->driver_id == $driver->id ? 'selected' : '' }}>{{ $driver->name }}</option>
                                 @endforeach
@@ -78,8 +78,8 @@
 
                         <div class="col-md-6">
                           <div class="form-group">
-                              <label>Market</label>
-                              <option value="">Select Market</option>
+                              <label>المتجر</label>
+                              <option value="">اختار المتجر</option>
                               <select name="market_id" class="form-control">
                                 @foreach ($markets as $market)
                                   <option value="{{ $market->id }}" {{ $user->market_id == $market->id ? 'selected' : '' }}>{{ $market->name }}</option>
@@ -92,7 +92,7 @@
                   </div>
                   <div class="card-footer">
                     <div class="row">
-                      <div class="col-md-6">
+                      {{-- <div class="col-md-6">
                           <label>
                               <input type="radio" name="next" value="back" checked="true">
                               <span>@lang('users.save_and_add_new')</span>
@@ -101,7 +101,7 @@
                               <input type="radio" name="next" value="list">
                               <span>@lang('users.save_and_back')</span>
                           </label>
-                      </div>
+                      </div> --}}
                       <div class="col-md-6">
                           <button type="submit" class="btn btn-primary btn-submit"><i class="fa fa-plus"></i> @lang('users.add')</button>
                       </div>

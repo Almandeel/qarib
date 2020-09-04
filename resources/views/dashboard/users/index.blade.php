@@ -14,7 +14,7 @@
         <div class="card-header">
             @permission('users-create')
                 <a  href="{{ route('users.create') }}" style="display:inline-block; margin-left:1%" class="btn btn-primary btn-sm pull-left" >
-                    <i class="fa fa-user-plus"> add</i>
+                    <i class="fa fa-user-plus"> اضافة</i>
                 </a>
             @endpermission
 
@@ -30,9 +30,9 @@
             <table id="datatable" class="table table-bordered table-hover text-center">
                 <thead>
                     <tr>
-                        <th>username</th>
-                        <th>email</th>
-                        <th>options</th>
+                        <th>اسم المستخدم</th>
+                        <th>البريد الالكتروني</th>
+                        <th>خيارات</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,15 +42,15 @@
                             <td>{{ $u->email }}</td>
                             <td>
                                 @permission('users-read')
-                                    <a class="btn btn-info btn-xs" href="{{ route('users.show', $u->id) }}"><i class="fa fa-eye"></i> show </a>
+                                    <a class="btn btn-info btn-xs" href="{{ route('users.show', $u->id) }}"><i class="fa fa-eye"></i> عرض </a>
                                 @endpermission
 
                                 @permission('users-update')
-                                    <a class="btn btn-warning btn-xs" href="{{ route('users.edit', $u->id) }}"><i class="fa fa-edit"></i> Edit </a>
+                                    <a class="btn btn-warning btn-xs" href="{{ route('users.edit', $u->id) }}"><i class="fa fa-edit"></i> تعديل </a>
                                     <form style="display:inline-block" action="{{ route('users.update', $u->id) }}?type=status" method="post">
                                         @csrf 
                                         @method('PUT')
-                                        <button class="btn btn-default btn-xs" type="submit"><i class="fa fa-edit"></i> {{$u->status ? 'Deactive' : 'Active' }} </a>
+                                        <button class="btn btn-default btn-xs" type="submit"><i class="fa fa-edit"></i> {{$u->status ? 'الغاء التفعيل' : 'تفعيل' }} </a>
                                     </form>
                                 @endpermission
 
@@ -58,7 +58,7 @@
                                 <form style="display:inline-block;" action="{{ route('users.destroy', $u->id) }}?type=status" method="post">
                                     @csrf 
                                     @method('DELETE')
-                                    <button class="btn btn-default btn-xs" style="margin:0 5px" type="submit"><i class="fa fa-edit"></i> Delete </a>
+                                    <button class="btn btn-default btn-xs" style="margin:0 5px" type="submit"><i class="fa fa-edit"></i> حذف </a>
                                 </form>
                                 @endpermission
                             </td>

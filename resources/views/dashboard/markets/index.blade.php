@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.app', ['datatable' => true])
 
 @section('title')
-    Markets
+    المتاجر
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
         <div class="card-header">
             @permission('markets-create')
                 <button style="display:inline-block; margin-left:1%" type="button" class="btn btn-primary btn-sm pull-left" data-toggle="modal" data-target="#MarketsModal">
-                    <i class="fa fa-plus"> add</i>
+                    <i class="fa fa-plus"> اضافة</i>
                 </button>
             @endpermission
         </div>
@@ -22,21 +22,19 @@
             <table id="datatable" class="table table-bordered table-hover text-center">
                 <thead>
                     <tr>
-                        <th>name</th>
-                        <th>email</th>
-                        <th>cost</th>
-                        <th>options</th>
+                        <th>اسم المتجر</th>
+                        <th>العمولة</th>
+                        <th>خيارات</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($markets as $market)
                         <tr>
                             <td>{{ $market->name }}</td>
-                            <td>{{ $market->email }}</td>
                             <td>{{ $market->delivery_cost }}</td>
                             <td>
                                 @permission('markets-update')
-                                    <a class="btn btn-warning btn-xs market  update" data-toggle="modal" data-target="#MarketsModal" data-action="{{ route('markets.update', $market->id) }}" data-name="{{ $market->name }}" data-email="{{ $market->email }}" data-cost="{{ $market->delivery_cost }}" ><i class="fa fa-edit"></i> Edit </a>
+                                    <a class="btn btn-warning btn-xs market   update" data-toggle="modal" data-target="#MarketsModal" data-action="{{ route('markets.update', $market->id) }}" data-name="{{ $market->name }}" data-email="{{ $market->email }}" data-cost="{{ $market->delivery_cost }}" ><i class="fa fa-edit"></i> تعديل </a>
                                 @endpermission
 
                                 {{-- @permission('markets-delete')

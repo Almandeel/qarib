@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.app', ['datatable' => true])
 
 @section('title')
-  Add User
+  اضافة مستخدم
 @endsection
 
 @push('css')
@@ -21,7 +21,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                      Add
+                      اضافة
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -53,7 +53,7 @@
                           </div>
                           <div class="col-md-6">
 							              <div class="form-group">
-                                <label>@lang('users.status')</label>
+                                <label>الحالة</label>
                                 <select name="status" class="form-control">
                                   <option value="0">@lang('users.deactive')</option>
                                   <option value="1">@lang('users.active')</option>
@@ -63,9 +63,9 @@
 
                           <div class="col-md-6">
 							              <div class="form-group">
-                                <label>driver</label>
+                                <label>المندوب</label>
                                 <select name="driver_id" class="form-control">
-                                  <option value="">Select driver</option>
+                                  <option value="">اختار المندوب </option>
                                   @foreach ($drivers as $driver)
                                     <option value="{{ $driver->id }}">{{ $driver->name }}</option>
                                   @endforeach
@@ -75,9 +75,9 @@
 
                           <div class="col-md-6">
 							              <div class="form-group">
-                                <label>Market</label>
+                                <label>المتجر</label>
                                 <select name="market_id" class="form-control">
-                                  <option value="">Select Market</option>
+                                  <option value="">اختار المتجر </option>
                                   @foreach ($markets as $market)
                                     <option value="{{ $market->id }}">{{ $market->name }}</option>
                                   @endforeach
@@ -89,7 +89,7 @@
                     </div>
                     <div class="card-footer">
                       <div class="row">
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <label>
                                 <input type="radio" name="next" value="back" checked="true">
                                 <span>@lang('users.save_and_add_new')</span>
@@ -98,7 +98,7 @@
                                 <input type="radio" name="next" value="list">
                                 <span>@lang('users.save_and_back')</span>
                             </label>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-primary btn-submit"><i class="fa fa-plus"></i> @lang('users.add')</button>
                         </div>

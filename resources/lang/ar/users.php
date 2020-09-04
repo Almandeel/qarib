@@ -16,4 +16,9 @@ return [
     'username' => 'اسم المستخدم',
     'password' => 'كلمة المرور',
     'profile'   => 'الملف الشخصي',
+    'password_confirmation' => 'تاكيد كلمة المرور',
+    'deactive'   => 'غير مفعل',
+    'active'   => 'مفعل',
+    'add'   => 'اضافة',
+
 ];

@@ -36,19 +36,19 @@
                                 <td>{{ $user['email'] }}</td>
                             </tr>
                             <tr>
-                                <th>@lang('users.status')</th>
-                                <td>{{ $user->status ? 'Active' : 'Deactive' }}</td>
+                                <th>الحالة</th>
+                                <td>{{ $user->status ? 'مفعل' : 'غير مفعل' }}</td>
                             </tr>
                         </table>
                     </div>
                     <div class="card-footer">
                         @if(request()->delete)
                             @permission('users-delete')
-                                <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i> Delete </button>
+                                <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i> حذف </button>
                             @endpermission
                         @else
                             @permission('users-delete')
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i>  Edit </a>
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i>  تعديل </a>
                             @endpermission
                         @endif
                     </div>
