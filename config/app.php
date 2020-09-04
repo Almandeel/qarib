@@ -166,7 +166,7 @@ return [
          * Package Service Providers...
          */
         // Astrotomic\Translatable\TranslatableServiceProvider::class,
-
+        NotificationChannels\Telegram\TelegramServiceProvider::class,
         /*
          * Application Service Providers...
          */
