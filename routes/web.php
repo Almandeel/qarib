@@ -40,10 +40,10 @@ Auth::routes();
 Route::get('bot', function () {
     TelegramMessage::create()
         // Optional recipient user id.
-        ->to('310481150')
+        ->to('@NotificationChannelsTelegramBot')
         // Markdown supported.
         ->content("Hello there!\nYour invoice has been *PAID*")
         // (Optional) Inline Buttons
-        ->button('View Invoice', url('bills'))
-        ->button('Download Invoice', url('bills'));
+        ->button('View Invoice', 'https://delivery.spatiulab.com')
+        ->button('Download Invoice', 'https://delivery.spatiulab.com');
 });
