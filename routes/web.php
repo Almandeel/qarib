@@ -1,8 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Notification;
+use NotificationChannels\Telegram\TelegramMessage;
 
 
-Route::group(['middleware' => 'auth'], function() {
+
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'DashboardController')->name('dashboard.index');
     Route::get('/home', 'DashboardController')->name('dashboard.index');
     Route::resource('users', 'UserController');
@@ -28,7 +33,17 @@ Route::group(['middleware' => 'auth'], function() {
 
     // API 
     Route::get('get/orders', 'OrderController@orders')->name('get.orders');
-
 });
 
 Auth::routes();
+
+Route::get('bot', function () {
+    TelegramMessage::create()
+        // Optional recipient user id.
+        ->to('310481150')
+        // Markdown supported.
+        ->content("Hello there!\nYour invoice has been *PAID*")
+        // (Optional) Inline Buttons
+        ->button('View Invoice', url('bills'))
+        ->button('Download Invoice', url('bills'));
+});

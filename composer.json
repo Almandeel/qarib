@@ -10,10 +10,10 @@
     "require": {
         "php": "^7.2.5",
         "fideloper/proxy": "^4.2",
+        "laravel-notification-channels/telegram": "^0.4.1",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
-        "niklasravnsborg/laravel-pdf": "^4.0",
         "santigarcor/laratrust": "5.2.*",
         "spatie/laravel-translatable": "^4.2"
     },
