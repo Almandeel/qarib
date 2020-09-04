@@ -65,6 +65,6 @@
     </div>
 </section>
 
-@include('dashboard.modals.add_order')
+@include('dashboard.modals.market_orders')
 
 @endsection

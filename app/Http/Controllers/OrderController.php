@@ -160,19 +160,19 @@ class OrderController extends Controller
 
     public function marketOrdersStore(Request $request) {
         $request->validate([
+            'phone'             => 'required | string | max:45',  
+            'address'           => 'required | string | max:255',
             'amount'            => 'required' ,
-            'receiver'          => 'required | string | max:45',
             'receiver_address'  => 'required | string | max:45', 
             'receiver_phone'    => 'required | string | max:45', 
-            'description' => 'required',
         ]);
 
         $request_data = $request->except('_token');
+        $request_data['delivery_amount'] = $request->from == $request->to ? 200 : 250;
 
-        $request_data['customer_name']      =  auth()->user()->name;
-        $request_data['customer_phone']     =  auth()->user()->phone;
-        $request_data['customer_address']   =  auth()->user()->address;
-
+        if($request->market_id) {
+            $request_data['market_id'] = $request->market_id;
+        }
 
         $order = Order::create($request_data);
 

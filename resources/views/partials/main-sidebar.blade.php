@@ -124,7 +124,7 @@
                 @endpermission
 
                 @role('market')
-                    <li class="nav-item" data-toggle="modal" data-target="#addOrderModal">
+                    <li class="nav-item" data-toggle="modal" data-target="#marketOrderModal">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fa fa-plus"></i>
                             <p> @lang('global.orders') </p>

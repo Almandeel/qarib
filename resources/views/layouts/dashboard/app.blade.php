@@ -195,7 +195,7 @@
 					showCancelButton: true,
 					confirmButtonColor: '#3085d6',
 					cancelButtonColor: '#d33',
-					cancelButtonText: 'اغلاق',
+					cancelButtonText: 'لا',
 					confirmButtonText: 'نعم',
 				}).then((result) => {
 					if (result.value) {

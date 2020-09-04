@@ -286,19 +286,44 @@
     <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
+            <div class="col-12 col-sm-6 col-md-4">
                 <div class="info-box">
                     <a class="info-box-icon bg-info elevation-1"r href="{{ route('drivers.show',auth()->user()->driver_id ) }}"><span ><i class="fas fa-list"></i></span></a>
                     <div class="info-box-content">
-                        <span class="info-box-text"> الطلبات </span>
+                        <span class="info-box-text"> كل الطلبات </span>
                         <span class="info-box-number">
-                            {{ count(auth()->user()->driver->orders->where('status', 0)) }}
+                            {{ count(auth()->user()->driver->bills->last()->billOrders) }}
                         </span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
                 <!-- /.info-box -->
             </div>
+            {{-- <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box">
+                    <a class="info-box-icon bg-info elevation-1"r href="{{ route('drivers.show',auth()->user()->driver_id ) }}"><span ><i class="fas fa-list"></i></span></a>
+                    <div class="info-box-content">
+                        <span class="info-box-text"> الطلبات التامة </span>
+                        <span class="info-box-number">
+                            {{ count(auth()->user()->driver->bills->last()->billOrders->where('status', 3)) }}
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box">
+                    <a class="info-box-icon bg-info elevation-1"r href="{{ route('drivers.show',auth()->user()->driver_id ) }}"><span ><i class="fas fa-list"></i></span></a>
+                    <div class="info-box-content">
+                        <span class="info-box-text"> الطلبات الملغية </span>
+                        <span class="info-box-number">
+                            {{ count(auth()->user()->driver->bills->last()->billOrders->where('status', 5)) }}
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div> --}}
         </div>
         <div class="row">
             @foreach (auth()->user()->driver->orders->where('status', 0) as $order)
@@ -389,7 +414,7 @@
 
 @role('market')
 <section class="content">
-    @include('dashboard.modals.add_order')
+    @include('dashboard.modals.market_orders')
 </section>
 @endrole
 <!-- /.content -->

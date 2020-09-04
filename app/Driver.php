@@ -13,4 +13,8 @@ class Driver extends Model
     public function orders() {
         return $this->hasMany('App\DriverOrder');
     }
+
+    public function bills() {
+        return $this->hasMany('App\Bill');
+    }
 }
