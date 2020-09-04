@@ -124,10 +124,10 @@
                 @endpermission
 
                 @role('market')
-                    <li class="nav-item" data-toggle="modal" data-target="#marketOrderModal">
+                    <li class="nav-item" data-toggle="modal" data-target="#addOrderModal">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fa fa-plus"></i>
-                            <p>@lang('global.add') @lang('global.orders') </p>
+                            <p> @lang('global.orders') </p>
                         </a>
                     </li>
 

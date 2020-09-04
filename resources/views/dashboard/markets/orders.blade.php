@@ -8,49 +8,51 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-            <h3>Orders</h3>
+            <h3>الطلبات</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table class="table table-bordered table-hover text-center">
+            <table id="datatable" class="table table-bordered table-hover text-center">
                 <thead>
                     <tr>
-                        <th>Order ID</th>
-                        <th>receiver</th>
-                        <th>receiver address</th>
-                        <th>receiver_phone</th>
-                        <th>amount</th>
-                        <th>status</th>
-                        <th>Date</th>
+                        <th>رقم الطلب</th>
+                        <th>رقم العميل</th>
+                        <th>عنوان الاستلام</th>
+                        <th>رقم المستلم</th>
+                        <th>عنوان التسليم</th>
+                        <th>قيمة الطلب</th>
+                        <th>حالة الطلب</th>
+                        <th>التاريخ</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($orders as $order)
                     <tr>
                         <td>{{ $order->order_number }}</td>
-                        <td>{{ $order->receiver }}</td>
-                        <td>{{ $order->receiver_address }}</td>
+                        <td>{{ $order->phone }}</td>
+                        <td>{{ $order->address }}</td>
                         <td>{{ $order->receiver_phone }}</td>
+                        <td>{{ $order->receiver_address }}</td>
                         <td>{{ $order->amount }}</td>
                         <td>
                             @if($order->status == \App\Order::$status_default)
-                                New
+                                جديد
                             @endif
 
                             @if($order->status == \App\Order::$status_accepted)
-                             Accepted
+                             تمت الموافقة
                             @endif
 
                             @if($order->status == \App\Order::$status_cancel)
-                                Cancel
+                                تم الالغاء
                             @endif
 
                             @if($order->status == \App\Order::$status_done)
-                                Done
+                                تم التسليم
                             @endif
 
                             @if($order->status == \App\Order::$status_in_drivers)
-                                In Driver
+                                في الطريق
                             @endif
                         </td>
                         <td>{{ $order->created_at->format('Y-m-d') }}</td>
@@ -63,6 +65,6 @@
     </div>
 </section>
 
-@include('dashboard.modals.market_orders')
+@include('dashboard.modals.add_order')
 
 @endsection

@@ -156,19 +156,19 @@ class WarehouseOrderController extends Controller
                 ]);
             }
     
-        $order->BillOrder->last()->bill->update([
-            'order_done' => ($order->BillOrder->last()->bill->order_done + 1)
-        ]);
+            // $order->BillOrder->last()->bill->update([
+            //     'order_done' => ($order->BillOrder->last()->bill->order_done + 1)
+            // ]);
 
-        if($order->BillOrder->last()->bill->order_done == $order->BillOrder->last()->bill->orders) {
-            $order->BillOrder->last()->bill->driver->update([
-                'status' => 0
-            ]);
+            if($order->BillOrder->last()->bill->order_done == $order->BillOrder->last()->bill->orders) {
+                $order->BillOrder->last()->bill->driver->update([
+                    'status' => 0
+                ]);
 
-            $order->BillOrder->last()->bill->update([
-                'status' => 1
-            ]);
-        }
+                $order->BillOrder->last()->bill->update([
+                    'status' => 1
+                ]);
+            }
         }
 
         return back()->with('success', 'success');

@@ -389,7 +389,7 @@
 
 @role('market')
 <section class="content">
-    @include('dashboard.modals.market_orders')
+    @include('dashboard.modals.add_order')
 </section>
 @endrole
 <!-- /.content -->

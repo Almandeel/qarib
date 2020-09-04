@@ -120,7 +120,11 @@ class DriverOrderController extends Controller
             ]);
 
             $driverOrder->order->BillOrder->last()->update([
-                'status' => Order::$status_done
+                'order_done' => Order::$status_done
+            ]);
+
+            $driverOrder->order->BillOrder->last()->bill->update([
+                'order_done' =>  $driverOrder->order->BillOrder->last()->bill->order_done + 1
             ]);
 
         }elseif($request->type == 'schedule') {
@@ -140,6 +144,10 @@ class DriverOrderController extends Controller
 
             $driverOrder->order->BillOrder->last()->update([
                 'status' => Order::$status_cancel
+            ]);
+
+            $driverOrder->order->BillOrder->last()->bill->update([
+                'order_done' =>  $driverOrder->order->BillOrder->last()->bill->order_done + 1
             ]);
         }
 
