@@ -9,6 +9,7 @@ use App\Market;
 use App\Employee;
 use App\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 
@@ -81,7 +82,7 @@ class UserController extends Controller
 
         $user->permissions()->attach($request->permissions);
         
-        session()->flash('success', 'Success');
+        session()->flash('success', 'تمت العملية بنجاح');
 
 
         if($request->next == 'back') {
@@ -133,7 +134,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         request()->validate([
-            'username'      => 'required | string | max:100 | min:3|regex:/^[A-Za-z]+$/',
+            'phone'         => ['required', 'string',  Rule::unique('users', 'phone')->ignore($user->id)],
             'password'      => 'nullable | string | min:6',
         ]);
     
@@ -157,7 +158,7 @@ class UserController extends Controller
 
         $user->permissions()->sync($request->permissions);
         
-        session()->flash('success', 'Success');
+        session()->flash('success', 'تمت العملية بنجاح');
 
 
         if($request->next == 'back') {
@@ -181,7 +182,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        session()->flash('success', 'Success');
+        session()->flash('success', 'تمت العملية بنجاح');
 
 
         return redirect()->route('users.index');
@@ -194,8 +195,8 @@ class UserController extends Controller
         $user = User::find(auth()->user()->id);
         
         request()->validate([
-        'username'      => 'required | string | max:100 | min:3|regex:/^[A-Za-z]+$/',
-        'password'      => 'nullable | string | min:6   | confirmed',
+            'phone'         => ['required', 'string',  Rule::unique('users', 'phone')->ignore($user->id)],
+            'password'      => 'nullable | string | min:6   | confirmed',
         ]);
         
         $request_data = $request->except('password');
@@ -206,12 +207,12 @@ class UserController extends Controller
         
         if(\Hash::check($request->old_password, $user->password) && $request->old_password != $request->password  ) {
             $user->update($request_data);
-            session()->flash('success', 'Success');
+            session()->flash('success', 'تمت العملية بنجاح');
         }else {
             if($request->old_password == $request->password) {
-                session()->flash('error', 'A new password must be entered');
+                session()->flash('error', 'ادخل كلمة مرور جديدة');
             }else {
-                session()->flash('error', 'The old password is incorrect');
+                session()->flash('error', 'كلمة المرور القديمة غير صحيحة');
             }
         }
         

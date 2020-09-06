@@ -26,17 +26,23 @@
                     <div class="card-body">
                         <div class="row">
                           <div class="col-md-6">
+                            <div class="form-group">
+                                <label>الاسم</label>
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="الاسم" required>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
                               <div class="form-group">
-                                  <label>@lang('users.username')</label>
-                                  <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="@lang('users.username')" required>
+                                  <label>رقم الهاتف</label>
+                                  <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="رقم الهاتف" required>
                               </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
-                                <label>@lang('users.email')</label>
-                                <input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="@lang('users.email')" required>
+                                <label>العنوان</label>
+                                <input type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="@lang('users.address')" required>
                             </div>
-                        </div>
+                          </div>
 						            </div>
 						            <div class="row">
                           <div class="col-md-6">

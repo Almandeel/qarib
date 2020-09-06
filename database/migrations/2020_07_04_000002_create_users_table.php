@@ -23,14 +23,16 @@ class CreateUsersTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('username', 16);
+            $table->string('name', 90)->nullable();
+            $table->string('phone', 10);
+            $table->string('address', 200)->nullable();
             $table->string('email', 25)->nullable();
             $table->string('password', 64);
             $table->unsignedInteger('driver_id')->nullable();
             $table->unsignedInteger('market_id')->nullable();
             $table->tinyInteger('status')->nullable()->default('1');
 
-            $table->unique(["username"], 'username_UNIQUE');
+            $table->unique(["phone"], 'username_UNIQUE');
 
 
             $table->timestamps();

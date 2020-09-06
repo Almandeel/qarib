@@ -21,12 +21,9 @@ class CreateMarketsTable extends Migration
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
-             
             $table->increments('id');
-            $table->string('name', 45);
-            $table->string('email', 45)->nullable();
-            $table->string('password', 64)->nullable();
-            $table->double('delivery_cost')->nullable();
+            $table->string('name', 90);
+            $table->string('address', 200);
             $table->timestamps();
         });
     }

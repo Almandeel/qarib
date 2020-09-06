@@ -9,7 +9,10 @@
   <div class="card-header">
       <h3 class="card-title float-right">قائمة الطلبات </h3>
       {{-- <button class="btn btn-success btn-xs order float-right order" data-toggle="modal" data-target="#orderModal"><i class="fa fa-check"> Bill Receved </i></button> --}}
-      <button class="btn btn-primary btn-xs order float-left order" style="margin: 0 2%" data-toggle="modal" data-target="#addOrderModal"  ><i class="fa fa-list"></i> اضافة طلب  </button>
+      @if(request()->type == 'active')
+        <button class="btn btn-primary btn-xs order float-left order" style="margin: 0 2%" data-toggle="modal" data-target="#addOrderModal"  ><i class="fa fa-list"></i> اضافة طلب  </button>
+        <button class="btn btn-success btn-xs order float-left" data-toggle="modal" data-target="#OrderWarehouseModal" ><i class="fa fa-car"></i> اضافة طلبات لمندوب </button>
+      @endif
   </div>
   <!-- /.card-header -->
   <div class="card-body">
@@ -59,6 +62,12 @@
   @include('dashboard.modals.show-order')
   @include('dashboard.modals.add_order')
   @include('partials._select2')
+
+
+  @if(request()->type == 'active')
+    @include('dashboard.modals.order-warehouse')
+  @endif
+
 
 
   @stack('select2')

@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Database\Seeder;
-
 use App\User;
+
+use App\Market;
 use App\Employee;
+use Illuminate\Database\Seeder;
 
 class SuperAdminSeeder extends Seeder
 {
@@ -15,10 +16,17 @@ class SuperAdminSeeder extends Seeder
     public function run()
     {
 
+        $market =   Market::create([
+            'name'      => 'Customer Services',
+            'address'   => 'Customer Services',
+        ]);
+
         $superadmin = User::create([
-            'username' => 'super',
-            'email' => 'super@admin.com',
-            'password' => bcrypt('123456'),
+            'phone'     => '0123456',
+            'name'      => 'super',
+            'address'   => 'super',
+            'market_id' => $market->id,
+            'password'  => bcrypt('123456'),
         ]);
 
         $superadmin->attachRole('superadmin');

@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="marketOrderModalLabel">Add Order</h4>
+                    <h4 class="modal-title" id="marketOrderModalLabel">اضافة طلب</h4>
                 </div>
                 <div class="add-order">
                     <form id="form_add_orders" action="{{ route('market.orderstore') }}" method="post">
@@ -64,13 +64,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>رقم هاتف العميل </label>
-                                            <input type="number" class="form-control" name="phone" placeholder="رقم هاتف العميل " required>
+                                            <input type="number" value="{{ auth()->user()->phone }}" class="form-control" name="phone" placeholder="رقم هاتف العميل " required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label> عنوان الاستلام</label>
-                                            <input type="text" class="form-control" name="address" placeholder=" عنوان الاستلام " required>
+                                            <input type="text" value="{{ auth()->user()->address }}" class="form-control" name="address" placeholder=" عنوان الاستلام " required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

@@ -76,7 +76,6 @@
                                                                 <td>{{ $order->order->receiver_address }}</td>
                                                                 <td>{{ $order->order->amount }}</td>
                                                                 <td>
-                                                                    <a href="{{ route('return.orders', $bill->driver->orders->where('order_id', $order->order->id)->last()->id) }}?type=schedule" class="btn btn-dark btn-xs"><i class="fa fa-clock"></i></a>
                                                                     <a href="{{ route('return.orders', $bill->driver->orders->where('order_id', $order->order->id)->last()->id) }}?type=cancel" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a>
                                                                 </td>
                                                                 @if($order->pyment_status == 0)
@@ -124,7 +123,6 @@
                                                                 <td>{{ $order->order->amount }}</td>
                                                                 <td>
                                                                     <a href="{{ route('return.orders', $bill->driver->orders->where('order_id', $order->order->id)->last()->id) }}?type=done" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>
-                                                                    <a href="{{ route('return.orders', $bill->driver->orders->where('order_id', $order->order->id)->last()->id) }}?type=schedule" class="btn btn-dark btn-xs"><i class="fa fa-clock"></i></a>
                                                                 </td>
                                                                 @if($order->pyment_status == 0)
                                                                     @php 

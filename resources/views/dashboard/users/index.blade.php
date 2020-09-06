@@ -30,16 +30,16 @@
             <table id="datatable" class="table table-bordered table-hover text-center">
                 <thead>
                     <tr>
-                        <th>اسم المستخدم</th>
-                        <th>البريد الالكتروني</th>
+                        <th>الاسم</th>
+                        <th>رقم الهاتف</th>
                         <th>خيارات</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $u)
                         <tr>
-                            <td>{{ $u->username }}</td>
-                            <td>{{ $u->email }}</td>
+                            <td>{{ $u->name }}</td>
+                            <td>{{ $u->phone }}</td>
                             <td>
                                 @permission('users-read')
                                     <a class="btn btn-info btn-xs" href="{{ route('users.show', $u->id) }}"><i class="fa fa-eye"></i> عرض </a>

@@ -166,7 +166,7 @@
                                         <label>@lang('orders.search')</label>
                                         <form action="{{ route('dashboard.index') }}" method="get">
                                             <div class="input-group ">
-                                                <input type="text" required class="form-control" name="order_id" placeholder="Order ID" aria-label="Order ID" aria-describedby="basic-addon2">
+                                                <input type="text" required class="form-control" name="order_id" placeholder="رقم الطلب " aria-label="Order ID" aria-describedby="basic-addon2">
                                                 <div class="input-group-append">
                                                     <button type="submit" class="input-group-text" id="basic-addon2">@lang('global.search')</button>
                                                 </div>

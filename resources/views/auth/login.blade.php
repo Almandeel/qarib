@@ -33,14 +33,14 @@
                 <form action="{{ route('login') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" name="username" placeholder="رقم الهاتف">
+                        <input type="text" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" placeholder="رقم الهاتف">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                                <span class="fas fa-phone"></span>
                             </div>
-                            @if ($errors->has('username'))
+                            @if ($errors->has('phone'))
                                 <span class="invalid-feedback text-danger" role="alert">
-                                    <strong>{{ $errors->first('username') }}</strong>
+                                    <strong>{{ $errors->first('phone') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -65,6 +65,12 @@
                         <!-- /.col -->
                         <div class="col-4">
                             <button type="submit" class="btn btn-primary btn-block">دخول </button>
+                        </div>
+                        <div class="col-6">
+
+                        </div>
+                        <div class="col-6">
+                            <a class="float-right mt-4" href="{{ route('register') }}">مستخدم جديد</a>
                         </div>
                         <!-- /.col -->
                     </div>

@@ -101,8 +101,12 @@
                         @csrf 
                         @method('PUT')
                         <div class="form-group">
-                            <label>اسم المستخدم</label>
-                            <input type="text" name="username" class="form-control" placeholder="اسم المستخدم" required value="{{ auth()->user()->username }}">
+                            <label>رقم الهاتف</label>
+                            <input type="text" name="phone" class="form-control" placeholder="رقم الهاتف" required value="{{ auth()->user()->phone }}">
+                        </div>
+                        <div class="form-group">
+                            <label>العنوان</label>
+                            <input type="text" name="address" class="form-control" placeholder="العنوان " required value="{{ auth()->user()->address }}">
                         </div>
                         <div class="form-group">
                             <label>كلمة المرور القديمة </label>

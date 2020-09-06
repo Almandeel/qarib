@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Driver;
 use App\Market;
 use App\WarehouseOrder;
 use App\WarehouseUsers;
@@ -17,14 +18,15 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->type == 'deactive') {
-            $orders = Order::where('status', 0)->get();
-        }else {
+        if($request->type == 'active') {
             $orders = Order::where('status', 1)->get();
+            $drivers = Driver::get();
+        }else {
+            $orders = Order::where('status', 0)->get();
         }
         $markets = Market::all();
         // $warehouses_user = WarehouseUsers::where('user_id', auth()->user()->id)->get();
-        return view('dashboard.orders.index', compact('orders', 'markets'));
+        return view('dashboard.orders.index', compact('orders', 'markets', 'drivers'));
     }
 
     /**
@@ -170,9 +172,7 @@ class OrderController extends Controller
         $request_data = $request->except('_token');
         $request_data['delivery_amount'] = $request->from == $request->to ? 200 : 250;
 
-        if($request->market_id) {
-            $request_data['market_id'] = $request->market_id;
-        }
+        $request_data['market_id'] = auth()->user()->market_id;
 
         $order = Order::create($request_data);
 

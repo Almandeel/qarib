@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Driver;
 use App\DriverOrder;
 use App\WarehouseUsers;
@@ -40,16 +41,25 @@ class DriverController extends Controller
     {
         $request->validate([
             'name'      => 'required',
-            'phone'     => 'required',
+            'phone'     => 'required | unique:users',
             'address'   => 'required',
             'car'       => 'required',
         ]);
 
         $request_data = $request->all();
-        
-        Driver::create($request_data);
 
-        return back()->with('success', 'success');
+        $driver = Driver::create($request_data);
+
+        $user = User::create([
+            'phone'         => $request->phone,
+            'name'          => $request->name,
+            'password'      => bcrypt(123456),
+            'driver_id'     => $driver->id,
+        ]);
+
+        $user->attachRole('drivers');
+
+        return back()->with('success', 'تمت العملية بنجاح');
     }
 
     /**
@@ -87,7 +97,8 @@ class DriverController extends Controller
     {
         $request->validate([
             'name'      => 'required',
-            'phone'     => 'required',
+            'phone'     => ['required', 'string',  Rule::unique('drivers', 'phone')->ignore($driver->id)],
+            'phone'     => ['required', 'string',  Rule::unique('users', 'phone')->ignore($driver->user->phone)],
             'address'   => 'required',
             'car'       => 'required',
         ]);
@@ -96,7 +107,7 @@ class DriverController extends Controller
         
         $driver->update($request_data);
 
-        return back()->with('success', 'success');
+        return back()->with('success', 'تمت العملية بنجاح');
     }
 
     /**

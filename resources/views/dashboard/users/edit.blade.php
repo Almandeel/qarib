@@ -29,17 +29,23 @@
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-6">
+                          <div class="form-group">
+                              <label>الاسم</label>
+                              <input type="text" class="form-control" name="name" value="{{ $user->name }}" placeholder="الاسم" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label>@lang('users.username')</label>
-                                <input type="text" class="form-control" name="username" value="{{ $user->username }}" placeholder="@lang('users.username')" required>
+                                <label>رقم الهاتف</label>
+                                <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" placeholder="رقم الهاتف" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                              <label>@lang('users.email')</label>
-                              <input type="text" class="form-control" name="email" value="{{ $user->email }}" placeholder="@lang('users.email')" required>
+                              <label>العنوان</label>
+                              <input type="text" class="form-control" name="address" value="{{ $user->address }}" placeholder="@lang('users.address')" required>
                           </div>
-                      </div>
+                        </div>
                       </div>
                       <div class="row">
                         <div class="col-md-6">
@@ -79,8 +85,8 @@
                         <div class="col-md-6">
                           <div class="form-group">
                               <label>المتجر</label>
-                              <option value="">اختار المتجر</option>
                               <select name="market_id" class="form-control">
+                                <option value="">اختار المتجر</option>
                                 @foreach ($markets as $market)
                                   <option value="{{ $market->id }}" {{ $user->market_id == $market->id ? 'selected' : '' }}>{{ $market->name }}</option>
                                 @endforeach
